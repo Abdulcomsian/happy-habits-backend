@@ -6,8 +6,5 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function registerUser(Request $request){
-        dd($request->all());
-        
-    }
+    
 }

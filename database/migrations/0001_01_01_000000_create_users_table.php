@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->string('otp')->nullable();
+            $table->string("tc_status")->nullable();
             $table->timestamps();
         });
 
