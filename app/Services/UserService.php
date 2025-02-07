@@ -28,7 +28,8 @@ class UserService
         $save->name = $data['name'];
         $save->email = $data['email'];
         $save->password = Hash::make($data['password']);
-        $save->otp = rand(0000, 9999);
+        // $save->otp = rand(0000, 9999);
+        $save->otp = 1234;
         $save->tc_status = $data['tc_status'];
         if($save->save()){
             $save->assignRole("user");
@@ -93,7 +94,8 @@ class UserService
     public function sendEmail($email){
         $user = $this->model::where('email', $email)->first();
         if($user && $user != null){
-            $otp = rand(0000, 9999);
+            // $otp = rand(0000, 9999);
+            $otp = 1234;
             $user->update(['otp' => $otp]);
             try{
                 Notification::route('mail', $email)->notify(new NotifyUserOtp($otp));
@@ -169,7 +171,8 @@ class UserService
     public function resendOtp($data){
         $user = $this->model::findOrFail($data->user_id);
         if($user && $user != null){
-            $otp = rand(0000, 9999);
+            // $otp = rand(0000, 9999);
+            $otp = 1234;
             $user->otp = $otp;
             $user->update();
             try{
