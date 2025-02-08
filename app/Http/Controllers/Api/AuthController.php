@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\LoginRequest;
 use App\Services\UserService;
 use App\Http\Requests\Api\RegisterRequest;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -37,7 +38,7 @@ class AuthController extends Controller
                     "msg" => $response['message'],
                     "data" => [
                         "access_token" => $response['access_token'],
-                        "user" => $response['user'],
+                        "user" => new UserResource($response['user']),
                     ],
                 ], 200);
             }else{
