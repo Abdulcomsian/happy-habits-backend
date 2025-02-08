@@ -34,7 +34,7 @@ class UserService
         if($save->save()){
             $save->assignRole("user");
             try{
-                Notification::route('mail', $save->email)->notify(new RegisterNotification($save->id, $save->otp, $save->name));
+                // Notification::route('mail', $save->email)->notify(new RegisterNotification($save->id, $save->otp, $save->name));
                 return [
                     'status' => 'success',
                     'message' => 'OTP sent successfully to ' . $save->email,
@@ -98,7 +98,7 @@ class UserService
             $otp = 1234;
             $user->update(['otp' => $otp]);
             try{
-                Notification::route('mail', $email)->notify(new NotifyUserOtp($otp));
+                // Notification::route('mail', $email)->notify(new NotifyUserOtp($otp));
                 return [
                     "status" => "success",
                     "message" => "An OTP has been sent to your email",
@@ -176,7 +176,7 @@ class UserService
             $user->otp = $otp;
             $user->update();
             try{
-                Notification::route('mail', $user->email)->notify(new NotifyUserOtp($otp));
+                // Notification::route('mail', $user->email)->notify(new NotifyUserOtp($otp));
                 return [
                     "status" => "success",
                     "message" => "An otp has been sent to your email",
