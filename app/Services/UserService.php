@@ -30,7 +30,6 @@ class UserService
         $save->password = Hash::make($data['password']);
         // $save->otp = rand(0000, 9999);
         $save->otp = 1234;
-        $save->tc_status = $data['tc_status'];
         if($save->save()){
             $save->assignRole("user");
             try{
@@ -38,7 +37,7 @@ class UserService
                 return [
                     'status' => 'success',
                     'message' => 'OTP sent successfully to ' . $save->email,
-                    'data' => $save,
+                    'user_id' => $save->id,
                 ];
             }catch(\Exception $e){
                 return [
@@ -80,6 +79,7 @@ class UserService
             "access_token" => $token,
             "type" => "Bearer",
             "message" => "User Login Successfully",
+            "user" => $user,
         ];
     }
 

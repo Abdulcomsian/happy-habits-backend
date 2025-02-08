@@ -20,7 +20,7 @@ class AuthController extends Controller
         try{
             $response = $this->userService->store($request->validated());
             if($response['status'] == "success"){
-                return response()->json(['status' => true, "msg" => $response['message']], 200);
+                return response()->json(['status' => true, "msg" => $response['message'], "user_id" => $response['user_id']], 200);
             }else{
                 return response()->json(['status' => false, "msg" => $response['message']], 400);
             }
@@ -33,7 +33,13 @@ class AuthController extends Controller
         try{
             $response = $this->userService->login($request);
             if($response['status'] == "success"){
-                return response()->json(['status' => true, "access_token" => $response['access_token'], "type" => $response['type'], "msg" => $response['message']], 200);
+                return response()->json([
+                    "msg" => $response['message'],
+                    "data" => [
+                        "access_token" => $response['access_token'],
+                        "user" => $response['user'],
+                    ],
+                ], 200);
             }else{
                 return response()->json(['status' => false, "msg" => $response['message']], 400);
             }

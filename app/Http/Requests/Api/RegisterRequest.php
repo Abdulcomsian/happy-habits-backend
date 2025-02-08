@@ -17,7 +17,6 @@ class RegisterRequest extends FormRequest
             "name" => "required",
             "email" => "required|unique:users",
             "password" => "required",
-            "tc_status" => "required",
         ];
     }    
 }
