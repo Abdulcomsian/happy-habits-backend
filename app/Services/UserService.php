@@ -196,6 +196,16 @@ class UserService
         }
     }
 
+    public function checkUserName($data){
+        return $this->model::where('username', $data['username'])->get();
+    }
+
+    public function setUserName($data){
+        $save = $this->model::findOrFail($data['user_id']);
+        $save->username = $data['username'];
+        return $save->save();
+    }
+
     public function edit($id){
         return $this->model::findOrFail($id);
     }

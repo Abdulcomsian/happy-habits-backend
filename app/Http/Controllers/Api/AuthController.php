@@ -97,6 +97,41 @@ class AuthController extends Controller
         }
     }
 
+    public function checkUserName(Request $request){
+        $request->validate([
+            "username" => "required",
+        ]);
+
+        try{
+            $data = $this->userService->checkUserName($request->all());
+            if(count($data) > 0){ // means username is already taken
+                return response()->json(['status' => false, "msg" => "Username is already taken"], 400);
+            }else{
+                return response()->json(['status' => true, "msg" => "Username is valid"], 200);
+            }
+        }catch(\Exception $e){
+            return response()->json(['status' => false, "data" => "Something Went Wrong", "error" => $e->getMessage(), "on line" => $e->getLine()], 400);
+        }
+    }
+
+    public function setUserName(Request $request){
+        $request->validate([
+            "user_id" => "required",
+            "username" => "required|unique:users",
+        ]);
+
+        try{
+            $this->userService->setUserName($request->all());
+            return response()->json(['status' => false, "msg" => "Username saved successfully"], 400);
+        }catch(\Exception $e){
+            return response()->json(['status' => false, "data" => "Something Went Wrong", "error" => $e->getMessage(), "on line" => $e->getLine()], 400);
+        }
+    }
+
+    public function refreshToken(Request $request){
+        dd($request->all());
+    }
+
     public function updatePassword(Request $request){
         $request->validate([
             "user_id" => ['required'],
