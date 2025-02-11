@@ -8,6 +8,7 @@ use App\Http\Requests\Api\RegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Laravel\Sanctum\PersonalAccessToken;
 
 class AuthController extends Controller
 {
@@ -129,7 +130,28 @@ class AuthController extends Controller
     }
 
     public function refreshToken(Request $request){
-        dd($request->all());
+        $request->validate([
+            "token" => 'required',
+        ]);
+
+        try{
+            $accessToken = PersonalAccessToken::findToken($request->token);
+            if (!$accessToken) {
+                return response()->json(['message' => 'Invalid token'], 401);
+            }
+            $user = $accessToken->tokenable;
+            $accessToken->delete();
+            $newToken = $user->createToken('API Token')->plainTextToken;
+            return response()->json([
+                "msg" => "Token refreshed successfully",
+                "data" => [
+                    "access_token" => $newToken,
+                    "user" => new UserResource($user),
+                ],
+            ], 200);
+        }catch(\Exception $e){
+            return response()->json(['status' => false, "data" => "Something Went Wrong", "error" => $e->getMessage(), "on line" => $e->getLine()], 400);
+        }
     }
 
     public function updatePassword(Request $request){
