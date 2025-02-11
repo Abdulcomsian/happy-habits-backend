@@ -145,10 +145,18 @@ class AuthController extends Controller
             return response()->json([
                 "msg" => "Token refreshed successfully",
                 "data" => [
-                    "access_token" => $newToken,
-                    "user" => new UserResource($user),
+                    "refresh_token" => $newToken,
                 ],
             ], 200);
+        }catch(\Exception $e){
+            return response()->json(['status' => false, "data" => "Something Went Wrong", "error" => $e->getMessage(), "on line" => $e->getLine()], 400);
+        }
+    }
+
+    public function myProfile(Request $request){
+        try{
+            $user = User::find(\Auth::user()->id);
+            return new UserResource($user);
         }catch(\Exception $e){
             return response()->json(['status' => false, "data" => "Something Went Wrong", "error" => $e->getMessage(), "on line" => $e->getLine()], 400);
         }

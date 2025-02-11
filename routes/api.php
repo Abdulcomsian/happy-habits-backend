@@ -16,12 +16,13 @@ Route::middleware(['acceptjson'])->group(function () {
     Route::post('verify-otp', [AuthController::class, 'verifyOtp']);
     Route::post('update-password', [AuthController::class, 'updatePassword']);
     Route::post('resend-otp', [AuthController::class, 'resendOtp']);
-    Route::post('my-profile', [AuthController::class, 'refreshToken']);
+    Route::post('refresh-token', [AuthController::class, 'refreshToken']);
 
     Route::middleware(['auth:sanctum'])->group(function(){
         Route::post('logout', [AuthController::class, 'logoutUser']);
         Route::post('check-username', [AuthController::class, 'checkUserName']);
         Route::post('set-username', [AuthController::class, 'setUserName']);
+        Route::get('my-profile', [AuthController::class, 'myProfile']);
 
         Route::get('get-goals', [GoalController::class, 'index']);
     });
