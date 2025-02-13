@@ -123,7 +123,7 @@ class AuthController extends Controller
 
         try{
             $this->userService->setUserName($request->all());
-            return response()->json(['status' => false, "msg" => "Username saved successfully"], 400);
+            return response()->json(['status' => true, "msg" => "Username saved successfully"], 200);
         }catch(\Exception $e){
             return response()->json(['status' => false, "data" => "Something Went Wrong", "error" => $e->getMessage(), "on line" => $e->getLine()], 400);
         }
