@@ -25,5 +25,6 @@ Route::middleware(['acceptjson'])->group(function () {
         Route::get('my-profile', [AuthController::class, 'myProfile']);
 
         Route::get('get-goals', [GoalController::class, 'index']);
+        Route::post('set-goals', [GoalController::class, 'store']);
     });
 });

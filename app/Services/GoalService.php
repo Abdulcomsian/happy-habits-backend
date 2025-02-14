@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Goal;
+use App\Models\UserGoal;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
@@ -19,6 +20,17 @@ class GoalService
 
     public function index(){
         return $this->model::get();
+    }
+
+    public function store($data){
+        UserGoal::where('user_id', Auth::user()->id)->delete();
+        foreach($data['goals'] as $goal){
+            $save = new UserGoal();
+            $save->user_id = Auth::user()->id;
+            $save->goal_id = $goal;
+            $save->save();
+        }
+        return $save;
     }
 
     public function edit($id){
