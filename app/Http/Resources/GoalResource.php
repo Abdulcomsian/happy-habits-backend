@@ -18,7 +18,7 @@ class GoalResource extends JsonResource
             "id" => $this->id,
             "name" => $this->name,
             "image" => asset("storage/images/goals/" . $this->image),
-            "time" => $this->time,
+            "time" => (int) $this->time,
         ];
     }
 }

@@ -14,10 +14,10 @@ class GoalSeeder extends Seeder
     public function run(): void
     {
         $goals = [
-            ["name" => "Sleep Time", "image" => "sleep.png", "time" => "8 Hours"],
-            ["name" => "Screen Time", "image" => "screen.png", "time" => "2 Hours"],
-            ["name" => "Workout", "image" => "workout.png", "time" => "2 Hours"],
-            ["name" => "Focus Time", "image" => "focus.png", "time" => "01h:45m"],
+            ["name" => "Sleep Time", "image" => "sleep.png", "time" => 480],
+            ["name" => "Screen Time", "image" => "screen.png", "time" => 120],
+            ["name" => "Workout", "image" => "workout.png", "time" => 120],
+            ["name" => "Focus Time", "image" => "focus.png", "time" => 105],
         ];
 
         foreach($goals as $goal){

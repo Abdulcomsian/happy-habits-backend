@@ -12,10 +12,12 @@ use Illuminate\Support\Facades\Hash;
 class GoalService
 {
     protected $model;
+    protected $userModel;
 
-    public function __construct(Goal $model)
+    public function __construct(Goal $model, UserGoal $userModel)
     {
         $this->model = $model;
+        $this->userModel = $userModel;
     }
 
     public function index(){
@@ -24,12 +26,17 @@ class GoalService
 
     public function store($data){
         UserGoal::where('user_id', Auth::user()->id)->delete();
-        foreach($data['goals'] as $goal){
-            $save = new UserGoal();
-            $save->user_id = Auth::user()->id;
-            $save->goal_id = $goal;
-            $save->save();
+        $goals = [];
+        foreach($data['goals'] as $key => $goal){
+            $goals[] = [
+                "user_id" => Auth::user()->id,
+                "goal_id" => $key,
+                "time" => $goal,
+                "created_at" => now(),
+                "updated_at" => now(),
+            ];
         }
+        $save = $this->userModel::insert($goals);
         return $save;
     }
 
