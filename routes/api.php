@@ -2,7 +2,16 @@
 
 use App\Http\Controllers\Api\{
     AuthController,
+    BeardController,
+    EyeBrowController,
+    EyeController,
+    FaceColorController,
+    GlassController,
     GoalController,
+    HairController,
+    LipsController,
+    NoseController,
+    ShirtController,
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +35,15 @@ Route::middleware(['acceptjson'])->group(function () {
 
         Route::get('get-goals', [GoalController::class, 'index']);
         Route::post('set-goals', [GoalController::class, 'store']);
+
+        Route::get('face-colors', [FaceColorController::class, 'index']);
+        Route::get('get-hairs', [HairController::class, 'index']);
+        Route::get('get-shirts', [ShirtController::class, 'index']);
+        Route::get('get-glasses', [GlassController::class, 'index']);
+        Route::get('get-eyes', [EyeController::class, 'index']);
+        Route::get('get-eyebrows', [EyeBrowController::class, 'index']);
+        Route::get('get-noses', [NoseController::class, 'index']);
+        Route::get('get-lips', [LipsController::class, 'index']);
+        Route::get('get-beards', [BeardController::class, 'index']);
     });
 });

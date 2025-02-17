@@ -2,8 +2,10 @@
 
 namespace App\Http\Resources;
 
+use App\Models\UserGoal;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class GoalResource extends JsonResource
 {
@@ -14,11 +16,24 @@ class GoalResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
-            "id" => $this->id,
-            "name" => $this->name,
-            "image" => asset("storage/images/goals/" . $this->image),
-            "time" => (int) $this->time,
-        ];
+        $count = UserGoal::where('user_id', Auth::user()->id)->count();
+        if($count > 0){
+            $goals = [
+                "id" => $this->id,
+                "name" => $this->name,
+                "image" => asset("storage/images/goals/" . $this->image),
+                "minutes" => (int) $this->userGoal->time,
+            ];
+        }else{
+            $goals = [
+                "id" => $this->id,
+                "name" => $this->name,
+                "image" => asset("storage/images/goals/" . $this->image),
+                "minutes" => (int) $this->time,
+            ];
+        }
+        
+
+        return $goals;
     }
 }

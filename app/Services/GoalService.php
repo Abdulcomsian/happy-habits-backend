@@ -21,11 +21,18 @@ class GoalService
     }
 
     public function index(){
-        return $this->model::get();
+        $count = $this->userModel::where('user_id', Auth::user()->id)->count();
+        if($count > 0){
+            return $this->model::whereHas('userGoal', function($query){
+                            $query->where('user_id', Auth::user()->id);
+                        })->get();
+        }else{
+            return $this->model::get();
+        }
     }
 
     public function store($data){
-        UserGoal::where('user_id', Auth::user()->id)->delete();
+        $this->userModel::where('user_id', Auth::user()->id)->delete();
         $goals = [];
         foreach($data['goals'] as $key => $goal){
             $goals[] = [

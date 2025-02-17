@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             UserSeeder::class,
             GoalSeeder::class,
+            AvatarSeeder::class,
         ]);
     }
 }

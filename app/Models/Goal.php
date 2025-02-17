@@ -14,4 +14,8 @@ class Goal extends Model
         'image',
         'time',
     ];
+
+    public function userGoal(){
+        return $this->hasOne(UserGoal::class, 'goal_id');
+    }
 }

@@ -18,8 +18,13 @@ class GoalController extends Controller
 
     public function index(){
         try{
-            $data = $this->service->index();
-            return GoalResource::collection($data)->additional(["status" => true]);
+            $goals = $this->service->index();
+            return response()->json([
+                "status" => true,
+                "data" => [
+                    "goals" => GoalResource::collection($goals)
+                ]
+            ]);
         }catch(\Exception $e){
             return response()->json(['status' => false, "message" => "Something Went Wrong"], 400);
         }
