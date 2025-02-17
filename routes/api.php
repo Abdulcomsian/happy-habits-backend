@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\{
     LipsController,
     NoseController,
     ShirtController,
+    VideoController,
 };
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -45,5 +46,8 @@ Route::middleware(['acceptjson'])->group(function () {
         Route::get('get-noses', [NoseController::class, 'index']);
         Route::get('get-lips', [LipsController::class, 'index']);
         Route::get('get-beards', [BeardController::class, 'index']);
+
+
+        Route::get('get-media', [VideoController::class, 'index']);
     });
 });
