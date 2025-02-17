@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/dashboard', function () {
@@ -12,6 +13,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/update-password', [ProfileController::class, 'updatePassword'])->name('update.password');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
 });
 
 require __DIR__.'/auth.php';
