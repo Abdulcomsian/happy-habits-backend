@@ -33,7 +33,11 @@ class GoalController extends Controller
     public function store(GoalRequest $request){
         try{
             $this->service->store($request->validated());
-            return response()->json(['status' => true, "message" => "Goals Saved Successfully"], 200);
+            return response()->json(['status' => true, "message" => "Goals Saved Successfully", 
+            "user" => [
+                "areaGoalsReady" => true,
+            ],
+        ], 200);
         }catch(\Exception $e){
             return response()->json(['status' => false, "message" => "Something Went Wrong"], 400);
         }

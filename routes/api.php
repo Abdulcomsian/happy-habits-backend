@@ -46,8 +46,6 @@ Route::middleware(['acceptjson'])->group(function () {
         Route::get('get-noses', [NoseController::class, 'index']);
         Route::get('get-lips', [LipsController::class, 'index']);
         Route::get('get-beards', [BeardController::class, 'index']);
-
-
         Route::get('get-media', [VideoController::class, 'index']);
     });
 });
