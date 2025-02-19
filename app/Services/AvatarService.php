@@ -23,6 +23,7 @@ class AvatarService
     }
 
     public function store($data){
+        dd(Auth::user()->id);
         $save = $this->model::updateOrCreate(
             [
                 "user_id" => Auth::user()->id,
