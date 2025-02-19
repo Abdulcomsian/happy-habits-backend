@@ -102,6 +102,7 @@ class AvatarController extends Controller
                 "message" => "Avatar Saved Successfully",
             ]);
         }catch(\Exception $e){
+            dd($e->getMessage(), $e->getLine());
             return response()->json(['status' => false, "message" => "Something Went Wrong"], 400);
         }
     }
