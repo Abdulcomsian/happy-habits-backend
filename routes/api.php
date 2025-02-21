@@ -3,16 +3,7 @@
 use App\Http\Controllers\Api\{
     AuthController,
     AvatarController,
-    BeardController,
-    EyeBrowController,
-    EyeController,
-    FaceColorController,
-    GlassController,
     GoalController,
-    HairController,
-    LipsController,
-    NoseController,
-    ShirtController,
     VideoController,
 };
 use Illuminate\Http\Request;
@@ -34,9 +25,13 @@ Route::middleware(['acceptjson'])->group(function () {
         Route::post('check-username', [AuthController::class, 'checkUserName']);
         Route::post('set-username', [AuthController::class, 'setUserName']);
         Route::get('my-profile', [AuthController::class, 'myProfile']);
+
         Route::get('get-goals', [GoalController::class, 'index']);
         Route::post('set-goals', [GoalController::class, 'store']);
+
         Route::get('get-accessories', [AvatarController::class, 'getAccessories']);
         Route::post('set-avatar', [AvatarController::class, 'setAvatar']);
+
+        Route::get('get-media', [VideoController::class, 'index']);
     });
 });
