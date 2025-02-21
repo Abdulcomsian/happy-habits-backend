@@ -21,7 +21,7 @@ class UserResource extends JsonResource
             "email" => $this->email,
             "email_verified_at" => date("Y-m-d H:i", strtotime($this->email_verified_at)),
             "areaGoalsReady" => $this->userGoals->count() > 0 ? true : false,
-            "avatar" => [
+            "avatar" => !empty($this->avatar) ? [
                 "id" => $this->avatar->id,
                 "is_male" => $this->avatar->is_male,
                 "color_id" => $this->avatar->color_id,
@@ -33,7 +33,7 @@ class UserResource extends JsonResource
                 "noses_id" => $this->avatar->noses_id,
                 "lips_id" => $this->avatar->lips_id,
                 "beards_id" => $this->avatar->beards_id,
-            ],
+            ] : null,
         ];
     }
 }
