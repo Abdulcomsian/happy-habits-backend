@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Avatar extends Model
 {
     protected $fillable = [
+        "user_id",
         "is_male",
         "color_id",
         "hair_id",
