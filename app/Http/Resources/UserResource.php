@@ -20,7 +20,7 @@ class UserResource extends JsonResource
             "username" => $this->username,
             "email" => $this->email,
             "email_verified_at" => date("Y-m-d H:i", strtotime($this->email_verified_at)),
-            "areaGoalsReady" => $this->userGoals->count() > 0 ? true : false,
+            "areGoalsReady" => $this->userGoals->count() > 0 ? true : false,
             "avatar" => !empty($this->avatar) ? [
                 "id" => $this->avatar->id,
                 "is_male" => $this->avatar->is_male,
