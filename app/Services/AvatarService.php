@@ -38,6 +38,11 @@ class AvatarService
                 "eyebrows_id" => $data['eyebrows_id'] ?? null,
                 "noses_id" => $data['noses_id'] ?? null,
                 "lips_id" => $data['lips_id'] ?? null,
+                "accessories_id" => $data['accessories_id'] ?? null,
+                "faceshap_id" => $data['faceshap_id'] ?? null,
+                "cloth_id" => $data['cloth_id'] ?? null,
+                "shoe_id" => $data['shoe_id'] ?? null,
+                "hat_id" => $data['hat_id'] ?? null,
                 "beards_id" => $data['beards_id'] ?? null,
             ]
         );

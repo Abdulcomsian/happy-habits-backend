@@ -24,6 +24,11 @@ class AvatarRequest extends FormRequest
             "nose_id" => "sometimes",
             "lip_id" => "sometimes",
             "beard_id" => "sometimes",
+            "accessories_id" => "sometimes",
+            "faceshap_id" => "sometimes",
+            "cloth_id" => "sometimes",
+            "shoe_id" => "sometimes",
+            "hat_id" => "sometimes",
         ];
     }
 }
