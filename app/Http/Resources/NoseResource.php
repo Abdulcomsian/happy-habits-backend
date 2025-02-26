@@ -14,9 +14,18 @@ class NoseResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
+        $array = [
             "id" => $this->id,
-            "image" => asset("storage/images/avatar/noses/" . $this->image),
+            "element_id" => $this->element_id,
         ];
+        if($this->gender == "male"){
+            $array['image'] = asset("storage/images/avatar/male/noses/" . $this->image);
+        }
+
+        if($this->gender == "female"){
+            $array['image'] = asset("storage/images/avatar/female/noses/" . $this->image);
+        }
+
+        return $array;
     }
 }

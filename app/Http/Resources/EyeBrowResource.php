@@ -14,9 +14,18 @@ class EyeBrowResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
+        $array = [
             "id" => $this->id,
-            "image" => asset("storage/images/avatar/eyesbrows/" . $this->image),
+            "element_id" => $this->element_id,
         ];
+        if($this->gender == "male"){
+            $array['image'] = asset("storage/images/avatar/male/eyebrows/" . $this->image);
+        }
+
+        if($this->gender == "female"){
+            $array['image'] = asset("storage/images/avatar/female/eyebrows/" . $this->image);
+        }
+
+        return $array;
     }
 }

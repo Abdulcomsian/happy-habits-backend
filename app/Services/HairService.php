@@ -18,7 +18,7 @@ class HairService
 
     }
 
-    public function index(){
-        return $this->model::get();
+    public function index($gender){
+        return $this->model::where('gender', $gender)->get();
     }
 }

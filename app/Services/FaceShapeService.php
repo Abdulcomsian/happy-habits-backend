@@ -2,17 +2,17 @@
 
 namespace App\Services;
 
-use App\Models\Eyebrow;
+use App\Models\FaceShape;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Hash;
 
-class EyeBrowService
+class FaceShapeService
 {
     protected $model;
 
-    public function __construct(Eyebrow $model)
+    public function __construct(FaceShape $model)
     {
         $this->model = $model;
 

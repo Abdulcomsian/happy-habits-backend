@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class HairResource extends JsonResource
+class HatResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,14 +19,13 @@ class HairResource extends JsonResource
             "element_id" => $this->element_id,
         ];
         if($this->gender == "male"){
-            $array['image'] = asset("storage/images/avatar/male/hairs/" . $this->image);
+            $array['image'] = asset("storage/images/avatar/male/hats/" . $this->image);
         }
 
         if($this->gender == "female"){
-            $array['image'] = asset("storage/images/avatar/female/hairs/" . $this->image);
+            $array['image'] = asset("storage/images/avatar/female/hats/" . $this->image);
         }
 
         return $array;
-        
     }
 }

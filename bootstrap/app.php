@@ -16,9 +16,6 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             "acceptjson" => AcceptJson::class,
         ]);
-        $middleware->append([
-            AcceptJson::class,
-        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

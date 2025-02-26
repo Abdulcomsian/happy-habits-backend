@@ -14,9 +14,14 @@ class BeardResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return [
+        $array = [
             "id" => $this->id,
-            "image" => asset("storage/images/avatar/beards/" . $this->image),
+            "element_id" => $this->element_id,
         ];
+        if($this->gender == "male"){
+            $array['image'] = asset("storage/images/avatar/male/beards/" . $this->image);
+        }
+
+        return $array;
     }
 }
