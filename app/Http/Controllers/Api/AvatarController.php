@@ -90,7 +90,6 @@ class AvatarController extends Controller
 
 
             $accessoriesFemale = $this->accessoryService->index("female");
-            $beardsFemale = $this->beardService->index("female");
             $clothesFemale = $this->clothService->index("female");
             $eyeBrowsFemale = $this->eyeBrowService->index("female");
             $eyesFemale = $this->eyeService->index("female");
@@ -121,7 +120,6 @@ class AvatarController extends Controller
 
                     "female" => [
                         "accessories" => $accessoriesFemale->isNotEmpty() ? AccessoriesResource::collection($accessoriesFemale) : null,
-                        "beard" => $beardsFemale->isNotEmpty() ? BeardResource::collection($beardsFemale) : null,
                         "clothes" => $clothesFemale->isNotEmpty() ? ClothResource::collection($clothesFemale) : null,
                         "eyebrows" => $eyeBrowsFemale->isNotEmpty() ? EyeBrowResource::collection($eyeBrowsFemale) : null,
                         "eyes" => $eyesFemale->isNotEmpty() ? EyeResource::collection($eyesFemale) : null,
