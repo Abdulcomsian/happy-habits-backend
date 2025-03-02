@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\{
+    ActivityController,
     AuthController,
     AvatarController,
+    FriendController,
     GoalController,
     VideoController,
 };
@@ -33,5 +35,13 @@ Route::middleware(['acceptjson'])->group(function () {
         Route::post('set-avatar', [AvatarController::class, 'setAvatar']);
 
         Route::get('get-media', [VideoController::class, 'index']);
+
+        Route::get('get-user-activities', [ActivityController::class, 'getUserActivities']);
+        Route::post('set-user-activity', [ActivityController::class, 'storeUserAcitivity']);
+
+        Route::get('get-friends', [FriendController::class, 'getFriends']);
+        Route::get('get-pending-requests', [FriendController::class, 'getRequests']);
+
+        Route::post('send-request', [FriendController::class, 'sendRequest']);
     });
 });

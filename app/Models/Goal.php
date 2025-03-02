@@ -18,4 +18,8 @@ class Goal extends Model
     public function userGoal(){
         return $this->hasOne(UserGoal::class, 'goal_id');
     }
+
+    public function activities(){
+        return $this->morphMany(Activity::class, 'activity_relation');
+    }
 }

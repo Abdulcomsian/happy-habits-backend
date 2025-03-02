@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Accessory;
+use App\Models\Avatar;
 use App\Models\Beard;
 use App\Models\Cloth;
 use App\Models\Eye;

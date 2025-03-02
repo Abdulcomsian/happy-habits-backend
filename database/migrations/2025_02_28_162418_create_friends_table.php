@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('goals', function (Blueprint $table) {
+        Schema::create('friends', function (Blueprint $table) {
             $table->id();
-            $table->string("name")->nullable();
-            $table->string("image")->nullable();
-            $table->string("time")->nullable();
-            $table->softDeletes();
+            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("friend_id");
+            $table->string("status")->default("pending");
+            $table->foreign("user_id")->on("users")->references("id");
+            $table->foreign("friend_id")->on("users")->references("id");
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('goals');
-    }  
+        Schema::dropIfExists('friends');
+    }
 };

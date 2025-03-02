@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\GoalRequest;
 use App\Http\Resources\GoalResource;
+use App\Models\Goal;
 use App\Services\GoalService;
 use Illuminate\Http\Request;
 
